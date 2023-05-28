@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public string gameState;
     public GameObject startScreen, endScreen, instructionScreen, reftoPlay, reftoBack, reftoAttack, reftoPlayAgain, reftoInstructions, reftoArcher, reftoMage, reftoWarrior;
-    public float score; 
+    public float score;
+    EventTileScript reftoETScript; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,7 @@ public class GameManager : MonoBehaviour
         startScreen.SetActive(true);
         endScreen.SetActive(false);
         instructionScreen.SetActive(false);
+        reftoETScript = GetComponent<EventTileScript>(); 
     }
 
     // Update is called once per frame
@@ -64,7 +67,28 @@ public class GameManager : MonoBehaviour
    
     public void EndTurnButton()
     {
-       // player must choose which character to play
+        // player must choose which character to play
+        reftoETScript.swamp1.SetActive(false);
+        reftoETScript.swamp2.SetActive(false);
+        reftoETScript.swamp3.SetActive(false);
+        reftoETScript.swamp4.SetActive(false);
+        reftoETScript.swamp5.SetActive(false);
+        reftoETScript.swamp6.SetActive(false);
+
+        reftoETScript.mount1.SetActive(false);
+        reftoETScript.mount2.SetActive(false);
+        reftoETScript.mount3.SetActive(false);
+        reftoETScript.mount4.SetActive(false);
+
+        reftoETScript.jung1.SetActive(false);
+        reftoETScript.jung2.SetActive(false);
+        reftoETScript.jung3.SetActive(false);
+        reftoETScript.jung4.SetActive(false);
+
+        reftoETScript.ice1.SetActive(false);
+        reftoETScript.ice2.SetActive(false);
+        reftoETScript.ice3.SetActive(false);
+        reftoETScript.ice4.SetActive(false);
     }
 
     public void ArcherButton()

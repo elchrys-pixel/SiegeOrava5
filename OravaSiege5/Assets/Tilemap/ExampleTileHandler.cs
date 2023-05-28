@@ -11,10 +11,10 @@ public class ExampleTileHandler : MonoBehaviour
     public Tilemap tilemap;
 
     // TILE TYPES
-    public TileBase redTile;
-    public TileBase blueTile;
+    public TileBase iceTile;
+    public TileBase swampTile, mountainTile, jungleTile;
     public TileBase swampET, iceET, mountainET, jungleET;
-    public EventTileScript reftoETScript;
+    EventTileScript reftoETScript;
 
     public void Start()
     {
@@ -24,30 +24,31 @@ public class ExampleTileHandler : MonoBehaviour
     private void Update()
     {
         // JUST MOVEMENT FOR TILE TESTING
-        if (Input.GetKeyDown(KeyCode.W)) transform.position += new Vector3(0, 0, 1);
-        if (Input.GetKeyDown(KeyCode.S)) transform.position += new Vector3(0, 0, -1);
-        if (Input.GetKeyDown(KeyCode.D)) transform.position += new Vector3(1, 0, 0);
-        if (Input.GetKeyDown(KeyCode.A)) transform.position += new Vector3(-1, 0, 0);
-
-        // TESTS FOR CURRENT TILE IN POSITION
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // CHECK TILE AGAINST TILE IN THE POSITION OF THIS OBJECT - USEFUL FOR CHECKING SINGLE TILE TYPES
-            if (GlobalTileCheck.GetTileInPosition(transform.position, tilemap) == redTile) print("On Red Tile"); // CHECKS VARIABLE WITHOUT SAVING
+        //if (Input.GetKeyDown(KeyCode.W)) transform.position += new Vector3(0, 0, 1);
+        //if (Input.GetKeyDown(KeyCode.S)) transform.position += new Vector3(0, 0, -1);
+        //if (Input.GetKeyDown(KeyCode.D)) transform.position += new Vector3(1, 0, 0);
+        //if (Input.GetKeyDown(KeyCode.A)) transform.position += new Vector3(-1, 0, 0);
+ // CHECK TILE AGAINST TILE IN THE POSITION OF THIS OBJECT - USEFUL FOR CHECKING SINGLE TILE TYPES
+            if (GlobalTileCheck.GetTileInPosition(transform.position, tilemap) == iceTile) print("On Ice"); // CHECKS VARIABLE WITHOUT SAVING
             else
             {
                 // GET THE TILE IN THE POSITION OF THIS OBJECT - THEN COMPARE TO TILES IN THIS SCRIPT - USEFUL FOR CHECKING AGAINST MULTIPLE TILE TYPES
                 TileBase currentTile = GlobalTileCheck.GetTileInPosition(transform.position, tilemap); // SAVES TILE TO VARIABLE
-                if (currentTile == blueTile) print("On Blue Tile"); // CHECKS VARIABLE
+                if (currentTile == swampTile) print("On Swamp"); // CHECKS VARIABLE
+                if (currentTile == mountainTile) print("On mountain"); // CHECKS VARIABLE //change BY QUADRANT!!!!!!!!!
+                if (currentTile == jungleTile) print("On Jungle"); // CHECKS VARIABLE
+                
+                //Event Tiles
                 if (currentTile == swampET) reftoETScript.swamp = true; print("On SwampET Tile"); // CHECKS VARIABLE
                 if (currentTile == iceET) reftoETScript.ice = true; print("On IceET Tile"); // CHECKS VARIABLE
                 if (currentTile == mountainET) reftoETScript.mountain = true; print("On MountainET Tile"); // CHECKS VARIABLE
                 if (currentTile == jungleET)  reftoETScript.jungle = true; print("On JungleET Tile"); // CHECKS VARIABLE
-                //else print("No Tile Here");
-
-               //is this order ok? SOMETHING WRONG WITH CALLING how to change sprite/lable to make ET. wuestions for j
-                
+               
             }
-        }
+        // TESTS FOR CURRENT TILE IN POSITION
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+           
+        //}
     }
 }
