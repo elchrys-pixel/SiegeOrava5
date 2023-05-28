@@ -13,6 +13,13 @@ public class ExampleTileHandler : MonoBehaviour
     // TILE TYPES
     public TileBase redTile;
     public TileBase blueTile;
+    public TileBase swampET, iceET, mountainET, jungleET;
+    public EventTileScript reftoETScript;
+
+    public void Start()
+    {
+        reftoETScript = GetComponent<EventTileScript>();
+    }
 
     private void Update()
     {
@@ -32,7 +39,14 @@ public class ExampleTileHandler : MonoBehaviour
                 // GET THE TILE IN THE POSITION OF THIS OBJECT - THEN COMPARE TO TILES IN THIS SCRIPT - USEFUL FOR CHECKING AGAINST MULTIPLE TILE TYPES
                 TileBase currentTile = GlobalTileCheck.GetTileInPosition(transform.position, tilemap); // SAVES TILE TO VARIABLE
                 if (currentTile == blueTile) print("On Blue Tile"); // CHECKS VARIABLE
-                else print("No Tile Here");
+                if (currentTile == swampET) reftoETScript.swamp = true; print("On SwampET Tile"); // CHECKS VARIABLE
+                if (currentTile == iceET) reftoETScript.ice = true; print("On IceET Tile"); // CHECKS VARIABLE
+                if (currentTile == mountainET) reftoETScript.mountain = true; print("On MountainET Tile"); // CHECKS VARIABLE
+                if (currentTile == jungleET)  reftoETScript.jungle = true; print("On JungleET Tile"); // CHECKS VARIABLE
+                //else print("No Tile Here");
+
+               //is this order ok? SOMETHING WRONG WITH CALLING how to change sprite/lable to make ET. wuestions for j
+                
             }
         }
     }
