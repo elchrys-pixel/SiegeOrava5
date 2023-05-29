@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public string gameState;
     public GameObject startScreen, endScreen, instructionScreen, reftoPlay, reftoBack, reftoAttack, reftoPlayAgain, reftoInstructions, reftoArcher, reftoMage, reftoWarrior;
     public float score;
-    EventTileScript reftoETScript; 
+    EventTileScript reftoETScript;
+    CameraLookAtSeperateScreen reftoCamSeperateScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +18,8 @@ public class GameManager : MonoBehaviour
         startScreen.SetActive(true);
         endScreen.SetActive(false);
         instructionScreen.SetActive(false);
-        reftoETScript = GetComponent<EventTileScript>(); 
+        reftoETScript = GetComponent<EventTileScript>();
+        reftoCamSeperateScreen = GetComponent<CameraLookAtSeperateScreen>();
     }
 
     // Update is called once per frame
@@ -68,6 +70,13 @@ public class GameManager : MonoBehaviour
     public void EndTurnButton()
     {
         // player must choose which character to play
+
+        //CAMERA FOLLOW CHARACTERS
+        reftoCamSeperateScreen.archerTarget = false;
+        reftoCamSeperateScreen.warriorTarget = false;
+        reftoCamSeperateScreen.mageTarget = false;
+
+        //ET CARDS
         reftoETScript.swamp1.SetActive(false);
         reftoETScript.swamp2.SetActive(false);
         reftoETScript.swamp3.SetActive(false);
@@ -94,16 +103,25 @@ public class GameManager : MonoBehaviour
     public void ArcherButton()
     {
         // activates archer movement
+
+        //archer camera
+        reftoCamSeperateScreen.archerTarget = true;
     }
 
     public void MageButton()
     {
         // activates mage movement
+
+        //mage camera
+        reftoCamSeperateScreen.mageTarget = true;
     }
 
     public void WarriorButton()
     {
         // activates warrior movement
+
+        //mage camera
+        reftoCamSeperateScreen.warriorTarget = true;
     }
 
     //play again and back button, play again completely reload scene
