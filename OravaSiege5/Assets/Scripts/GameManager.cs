@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         startScreen.SetActive(true);
         endScreen.SetActive(false);
         instructionScreen.SetActive(false);
+
         reftoETScript = GetComponent<EventTileScript>();
         reftoCamSeperateScreen = GetComponent<CameraLookAtSeperateScreen>();
     }
